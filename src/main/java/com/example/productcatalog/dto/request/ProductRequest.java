@@ -24,10 +24,10 @@ public class ProductRequest {
     private BigDecimal price;
 
     @NotNull
-    @Min(0)
-    private Integer quantity;
-
-    @NotNull
     private Integer categoryId;
+
+    // optional: set ban đầu
+    @Min(0)
+    private Integer stockQuantity;
 }
 

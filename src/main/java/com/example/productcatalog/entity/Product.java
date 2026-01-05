@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -25,11 +26,21 @@ public class Product {
     @Column(nullable = false, precision = 18, scale = 2)
     private BigDecimal price;
 
-    @Column(nullable = false)
-    private Integer quantity;
+    // MODULE 1
+    @Column(name = "stock_quantity", nullable = false)
+    private Integer stockQuantity = 0;
+
+    @Column(name = "last_stock_updated_at")
+    private LocalDateTime lastStockUpdatedAt;
+
+    // MODULE 2
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private ProductStatus status = ProductStatus.ACTIVE;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
+
 }
 
